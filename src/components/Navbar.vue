@@ -1,39 +1,22 @@
 <template>
-    <header class="flex justify-between place-items-center">
-        <div class="space-x-10">
-        <router-link to="/" class="inline-block">Home</router-link>
-        <router-link to="/about" class="inline-block">Profile</router-link>
-        </div>
-    </header>
+  <header class="justify-center">
+      <div class="divide-x grid grid-cols-3">
+        <div><router-link to="/" class="inline-block">Home</router-link></div>
+        <div><router-link to="/stock" class="inline-block">Items Stock</router-link></div>
+        <div><router-link to="/about" class="inline-block">About</router-link></div>
+      </div>
+  </header>
 </template>
 
 <style scoped>
 *{
-    font-size: 22px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    text-decoration: none;
-    background-color: #83c5be;
-    color: #006d77;
-    
+  font-size: 22px;
+  font-family: monospace;
+  text-decoration: none;
+  background-color: #83c5be;
+  color: #006d77;
 }
-header{
-    padding: 20px;
-}
-.image_full{
-   display:block;
-  }
-
- .image_mobile{
-  display:none;
- }
-
-@media (max-width: 1000px) and (min-width: 320px){
-  .image_full{
-   display:none;
-  }
-
-  .image_mobile{
-   display:block;
-  }
+header {
+  padding: 18px;
 }
 </style>

@@ -1,5 +1,8 @@
 <template>
   <navbar />
+  <header>
+    Stock Manager
+  </header>
 </template>
 
 <script>
@@ -13,3 +16,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+header{
+  font-size: 34px;
+  font-family: 'Courier New', Courier, monospace;
+  color: #006d77;
+  padding: 24px;
+
+}
+</style>
+

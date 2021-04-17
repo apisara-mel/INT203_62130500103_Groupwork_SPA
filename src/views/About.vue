@@ -1,8 +1,7 @@
 <template>
   <navbar />
-  <div class="about">
-    <img src="assets/png/myProfile.jpg">
-    <h1>This is an about page</h1>
+  <div class="">
+    <img src="../../src/assets/png/myProfile.jpg" width="300" class="my-5 justify-self-center">
   </div>
 </template>
 
