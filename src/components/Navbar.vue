@@ -10,13 +10,13 @@
 
 <style scoped>
 *{
-  font-size: 22px;
+  font-size: 18px;
   font-family: monospace;
   text-decoration: none;
   background-color: #83c5be;
   color: #006d77;
 }
 header {
-  padding: 18px;
+  padding: 12px;
 }
 </style>
