@@ -10,9 +10,11 @@
 <style scoped>
 *{
     font-size: 22px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     text-decoration: none;
     background-color: #83c5be;
     color: #006d77;
+    
 }
 header{
     padding: 20px;
