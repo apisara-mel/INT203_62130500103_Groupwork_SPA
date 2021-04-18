@@ -2,11 +2,12 @@
   <navbar />
   <!-- <header class="flex justify-center">Stock Manager</header> -->
 
-  <body>
+  <body class="h-screen">
     <div class="contianer justify-center flex mt-20">
       <div
         class="stock-contianer justify-start max-w-lg rounded-md shadow-lg bg-red-100 px-8 py-10"
       >
+      <form @submit.prevent="submitForm">
         <div class="mb-8">
           <p>
             Item Name :
@@ -54,20 +55,19 @@
             />
           </p>
         </div>
+       </form> 
       </div>
     </div>
 
     <div class="flex justify-center">
-      
         <button
         v-on:click="submitForm"
         class="rounded-md py-2 px-5 my-8"
         style="background-color: #dd2c2f">
-        <router-link to="/stock">
+        <!-- <router-link to="/stock"> -->
         SUBMIT
-        </router-link>
+        <!-- </router-link> -->
       </button>
-      
     </div>
   </body>
 </template>
@@ -104,27 +104,53 @@ export default {
       this.invaliQuantityInput = this.quantity === null ? true : false;
       this.invaliDescription = this.description === "" ? true : false;
 
-      console.log(`name value: ${this.enteredName}`);
-      console.log(`price value: ${this.price}`);
-      console.log(`invalid name: ${this.invaliNameInput}`);
-      console.log(`invalid price: ${this.invaliPriceInput}`);
+      this.addProduct()
 
-      if (this.enteredName !== "" && this.price !== null) {
-        if (this.isEdit) {
-          this.edtSurvey({
-            id: this.editId,
-            name: this.enteredName,
-            price: this.price,
-          });
-        } else {
-          this.addnewProduct({
-            name: this.enteredName,
-            price: this.price,
-          });
-        }
-      }
+      // console.log(`name value: ${this.enteredName}`);
+      // console.log(`price value: ${this.price}`);
+      // console.log(`invalid name: ${this.invaliNameInput}`);
+      // console.log(`invalid price: ${this.invaliPriceInput}`);
+
+      // if (this.enteredName !== "" && this.price !== null) {
+      //   if (this.isEdit) {
+      //     this.edtSurvey({
+      //       id: this.editId,
+      //       name: this.enteredName,
+      //       price: this.price,
+      //     });
+      //   } else {
+      //     this.addProduct({
+      //       name: this.enteredName,
+      //       price: this.price,
+      //     });
+      //   }
+      // }
       this.enteredName = "";
       this.price = null;
+    },
+
+    async addProduct() {
+      try {
+        const res = await fetch(this.url, {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify({
+            name: this.enteredName,
+            price: this.price,
+            quantity: this.quantity,
+            description: this.description,
+          }),
+        })
+        
+        const data = await res.json();
+        this.allProduct = [...this.allProduct, data];
+        this.enteredName = "";
+        this.price = null;
+        this.quantity = null;
+        this.description = "";
+        } catch (error) {
+        console.log(`Could not save! ${error}`);
+      }
     },
 
     showData(show) {
@@ -144,29 +170,7 @@ export default {
       }
     },
 
-    async addnewProduct(newProduct) {
-      try {
-        const res = await fetch(this.url, {
-          method: "POST",
-          headers: { "Content-type": "application/json" },
-          body: JSON.stringify({
-            name: newProduct.name,
-            price: newProduct.price,
-            quantity: newProduct.quantity,
-            description: newProduct.description,
-          }),
-        })
-        console.log(newProduct);
-        const data = await res.json();
-        this.allProduct = [...this.allProduct, data];
-        this.enteredName = "";
-        this.price = null;
-        this.quantity = null;
-        this.description = "";
-        } catch (error) {
-        console.log(`Could not save! ${error}`);
-      }
-    },
+    
   },
 }
 </script>

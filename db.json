@@ -1,28 +1,11 @@
 {
   "allProduct": [
     {
-      "name": "Dior Lip-Gel",
-      "price": 4500,
-      "quatity": 100,
-      "description": "ลิปนำเข้าจากฝรั่งเศษ คุณภาพสุกคุ้ม",
+      "name": "sdsdd",
+      "price": "3",
+      "quantity": "3",
+      "description": "ad",
       "id": 1
-    },
-    {
-      "name": "Dior Lip-Gel",
-      "price": 4500,
-      "quatity": 100,
-      "description": "ลิปนำเข้าจากฝรั่งเศษ คุณภาพสุกคุ้ม",
-      "id": 2
-    },
-    {
-      "name": "fxvgds",
-      "price": "455",
-      "id": 3
-    },
-    {
-      "name": "sd",
-      "price": "222",
-      "id": 4
     }
   ]
 }
