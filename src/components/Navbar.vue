@@ -1,18 +1,17 @@
 <template>
-  <header>
-    <div>
-      <div class="inline justify-sart">
+    <div class="grid grid-cols-3 p-2">
+      <div class="">
         <router-link to="/">
-        <img src="../../src/assets/png/logo.png" class="inline"/>
+          <img src="../../src/assets/png/logo.png" />
         </router-link>
       </div>
-        <div class="inline space-x-28 justify-center">
-          <router-link to="/">Home</router-link>
-          <router-link to="/stock">Items Stock</router-link>
-          <router-link to="/about">About</router-link>
-        </div>
+
+      <div class="col-start-2 col-end-2 justify-self-center space-x-28">
+        <router-link to="/">Home</router-link>
+        <router-link to="/stock">ItemsStock</router-link>
+        <router-link to="/about">About</router-link>
+      </div>
     </div>
-  </header>
 </template>
 
 <style scoped>
@@ -22,8 +21,5 @@
   text-decoration: none;
   background-color: #83c5be;
   color: #006d77;
-}
-header {
-  padding: 12px;
 }
 </style>

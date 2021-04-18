@@ -1,9 +1,9 @@
 <template >
   <navbar />
-   <!-- <header class="flex justify-center">Stock Manager</header> -->
+  <!-- <header class="flex justify-center">Stock Manager</header> -->
 
   <body>
-    <div class="contianer justify-center flex">
+    <div class="contianer justify-center flex mt-20">
       <div
         class="stock-contianer justify-start max-w-lg rounded-md shadow-lg bg-red-100 px-8 py-10"
       >
@@ -11,6 +11,7 @@
           <p>
             Item Name :
             <input
+              v-model="enteredName"
               class="ml-2 w-80 placeholder-gray-500 placeholder-opacity-50 focus:outline-none rounded"
               type="text"
               placeholder="Plese enter your item name"
@@ -22,6 +23,7 @@
           <p>
             Price :
             <input
+              v-model="price"
               class="ml-2 w-80 placeholder-gray-500 placeholder-opacity-50 focus:outline-none rounded"
               type="text"
               placeholder="Item price"
@@ -33,6 +35,7 @@
           <p>
             Quantity :
             <input
+              v-model="quantity"
               class="ml-2 w-80 placeholder-gray-500 placeholder-opacity-50 focus:outline-none rounded"
               type="text"
               placeholder="Item quantities"
@@ -44,6 +47,7 @@
           <p>
             Description :
             <input
+              v-model="description"
               class="ml-2 w-80 placeholder-gray-500 placeholder-opacity-50 focus:outline-none rounded"
               type="text"
               placeholder="Description"
@@ -52,30 +56,122 @@
         </div>
       </div>
     </div>
-    <div >
-      <button class="bg-green-500 rounded-md py-2 px-5 my-8">SUBMIT</button>
+
+    <div class="flex justify-center">
+      
+        <button
+        v-on:click="submitForm"
+        class="rounded-md py-2 px-5 my-8"
+        style="background-color: #dd2c2f">
+        <router-link to="/stock">
+        SUBMIT
+        </router-link>
+      </button>
+      
     </div>
-  </body> 
+  </body>
 </template>
 
 <script>
 // @ is an alias to /src
-import Navbar from "@/components/Navbar.vue";
 
 export default {
   name: "Home",
   components: {
-    Navbar,
+    
   },
-  data() {},
+
+  data() {
+    return {
+      enteredName: "",
+      price: null,
+      quantity: null,
+      description: "",
+      invaliNameInput: false,
+      invaliPriceInput: false,
+      invaliQuantityInput: false,
+      invaliDescription: false,
+      allProduct: [],
+      url: "http://localhost:5000/allProduct",
+      // isEdit: false,
+      // editId: "",
+    };
+  },
   methods: {
-    submitFrom() {},
+    submitForm() {
+      this.invaliNameInput = this.enteredName === "" ? true : false;
+      this.invaliPriceInput = this.price === null ? true : false;
+      this.invaliQuantityInput = this.quantity === null ? true : false;
+      this.invaliDescription = this.description === "" ? true : false;
+
+      console.log(`name value: ${this.enteredName}`);
+      console.log(`price value: ${this.price}`);
+      console.log(`invalid name: ${this.invaliNameInput}`);
+      console.log(`invalid price: ${this.invaliPriceInput}`);
+
+      if (this.enteredName !== "" && this.price !== null) {
+        if (this.isEdit) {
+          this.edtSurvey({
+            id: this.editId,
+            name: this.enteredName,
+            price: this.price,
+          });
+        } else {
+          this.addnewProduct({
+            name: this.enteredName,
+            price: this.price,
+          });
+        }
+      }
+      this.enteredName = "";
+      this.price = null;
+    },
+
+    showData(show) {
+      this.enteredName = show.name;
+      this.price = show.price;
+      this.quantity = show.quantity;
+      this.description = show.description;
+    },
+
+    async getProduct() {
+      try {
+        const res = await fetch(this.url);
+        const data = await res.json();
+        return data;
+      } catch (error) {
+        console.log(`Could not get! ${error}`);
+      }
+    },
+
+    async addnewProduct(newProduct) {
+      try {
+        const res = await fetch(this.url, {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify({
+            name: newProduct.name,
+            price: newProduct.price,
+            quantity: newProduct.quantity,
+            description: newProduct.description,
+          }),
+        })
+        console.log(newProduct);
+        const data = await res.json();
+        this.allProduct = [...this.allProduct, data];
+        this.enteredName = "";
+        this.price = null;
+        this.quantity = null;
+        this.description = "";
+        } catch (error) {
+        console.log(`Could not save! ${error}`);
+      }
+    },
   },
-};
+}
 </script>
 
 <style scoped>
-
 header {
   font-size: 34px;
   font-family: "Courier New", Courier, monospace;
@@ -92,10 +188,9 @@ input {
   padding: 1px;
 }
 
-button{
+button {
   color: #ffffff;
   padding: 4px;
 }
-
 </style>
 
