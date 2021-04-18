@@ -1,6 +1,6 @@
-<template>
+<template >
   <navbar />
-  <header>Stock Manager</header>
+   <!-- <header class="flex justify-center">Stock Manager</header> -->
 
   <body>
     <div class="contianer justify-center flex">
@@ -52,10 +52,10 @@
         </div>
       </div>
     </div>
-    <div class="bg-green-500 btn rounded-md ">
-      <button>SUBMIT</button>
+    <div >
+      <button class="bg-green-500 rounded-md py-2 px-5 my-8">SUBMIT</button>
     </div>
-  </body>
+  </body> 
 </template>
 
 <script>
@@ -75,6 +75,7 @@ export default {
 </script>
 
 <style scoped>
+
 header {
   font-size: 34px;
   font-family: "Courier New", Courier, monospace;
@@ -93,8 +94,8 @@ input {
 
 button{
   color: #ffffff;
-  padding: 2px;
-
+  padding: 4px;
 }
+
 </style>
 
