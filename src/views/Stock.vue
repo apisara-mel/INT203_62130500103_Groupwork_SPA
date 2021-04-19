@@ -1,15 +1,28 @@
 <template>
   <navbar />
+
+  <div class="flex justify-center my-20">
+    <input
+      class="p-1 ml-2 text-black placeholder-gray-500 placeholder-opacity-50 rounded w-80 focus:outline-none"
+      type="text"
+      placeholder="Please enter text for searching product"
+      v-model="search"
+    />
+    <button class="p-1 ml-2 bg-green-500 rounded-lg focus:outline-none">
+      Cancel
+    </button>
+  </div>
+
   <div class="grid grid-cols-2">
-    <div class="mx-24 my-20 items-stretch">
+    <div class="items-stretch mx-24">
       <div
-        v-for="product in allProduct"
+        v-for="product in searchproduct"
         :key="product.id"
-        class="rounded-md border-2 mb-12 shadow-sm hover:shadow-lg px-8 py-8 grid grid-cols-2"
+        class="grid grid-cols-2 px-8 py-8 mb-12 border-2 rounded-md shadow-sm hover:shadow-lg"
         style="background-color: #ffddd2"
       >
         <div>
-          <p class="pl-10 text-left leading-loose">
+          <p class="pl-10 leading-loose text-left">
             Product Name : {{ product.name }} <br />
             Price : {{ product.price }} <br />
             Quatity in stock : {{ product.quantity }} <br />
@@ -20,7 +33,7 @@
           <div class="mb-8">
             <button
               @click="editProduct(product)"
-              class="border-2 rounded-lg hover:border-transparent px-8 py-2 mx-12"
+              class="px-8 py-2 mx-12 border-2 rounded-lg hover:border-transparent"
             >
               Edit
             </button>
@@ -28,7 +41,7 @@
           <div>
             <button
               @click="deleteProduct(product.id)"
-              class="border-2 rounded-lg hover:border-transparent px-6 py-2 mx-12"
+              class="px-6 py-2 mx-12 border-2 rounded-lg hover:border-transparent"
             >
               Delete
             </button>
@@ -39,7 +52,7 @@
 
     <div
       v-if="isEdit"
-      class="mx-24 my-20 rounded-md border-2 flex justify-center items-center"
+      class="flex items-center justify-center mx-24 my-20 border-2 rounded-md"
       style="background-color: #ffddd2"
     >
       <div class="py-10">
@@ -49,7 +62,7 @@
               Item Name :
               <input
                 v-model="enteredName"
-                class="ml-2 w-80 placeholder-gray-500 placeholder-opacity-50 focus:outline-none rounded"
+                class="ml-2 placeholder-gray-500 placeholder-opacity-50 rounded w-80 focus:outline-none"
                 type="text"
                 placeholder="Plese enter your item name"
               />
@@ -61,7 +74,7 @@
               Price :
               <input
                 v-model="price"
-                class="ml-2 w-80 placeholder-gray-500 placeholder-opacity-50 focus:outline-none rounded"
+                class="ml-2 placeholder-gray-500 placeholder-opacity-50 rounded w-80 focus:outline-none"
                 type="text"
                 placeholder="Item price"
               />
@@ -73,7 +86,7 @@
               Quantity :
               <input
                 v-model="quantity"
-                class="ml-2 w-80 placeholder-gray-500 placeholder-opacity-50 focus:outline-none rounded"
+                class="ml-2 placeholder-gray-500 placeholder-opacity-50 rounded w-80 focus:outline-none"
                 type="text"
                 placeholder="Item quantities"
               />
@@ -85,19 +98,19 @@
               Description :
               <input
                 v-model="description"
-                class="ml-2 w-80 placeholder-gray-500 placeholder-opacity-50 focus:outline-none rounded"
+                class="ml-2 placeholder-gray-500 placeholder-opacity-50 rounded w-80 focus:outline-none"
                 type="text"
                 placeholder="Description"
               />
             </p>
           </div>
           <div class="flex justify-center">
-           <button
-            type="submit"
-            class="border-2 rounded-lg hover:border-transparent px-6 py-2 mx-12"
-          >
-            SUBMIT
-          </button> 
+            <button
+              type="submit"
+              class="px-6 py-2 mx-12 border-2 rounded-lg hover:border-transparent"
+            >
+              SUBMIT
+            </button>
           </div>
         </form>
       </div>
@@ -120,6 +133,7 @@ export default {
       description: "",
       isEdit: false,
       selectProduct: null,
+      search: "",
     };
   },
 
@@ -188,10 +202,25 @@ export default {
       this.isEdit = false;
       this.selectProduct = null;
     },
+
+    // search(search){
+    //   this.searchProduct = search;
+    // }
   },
+
   async created() {
     this.allProduct = await this.getProduct();
   },
+
+  computed: {
+    searchproduct(){
+      return this.allProduct.filter((showResult) => {
+                return showResult.name.toLowerCase().includes(this.search.toLowerCase())
+            })
+    }
+  }
+
+  
 };
 </script>
 
@@ -204,7 +233,7 @@ button {
 button:hover {
   background-color: #da744f;
 }
-p{
+p {
   color: #006d77;
 }
 </style>
