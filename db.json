@@ -1,25 +1,18 @@
 {
   "allProduct": [
     {
-      "name": "NYX",
-      "price": "5000",
+      "name": "NYX PRO DROP FOUNDATION",
+      "price": "5,000",
       "quantity": "10",
-      "description": "Libstick Gels",
+      "description": "Adjustable Liquid Foundation",
       "id": 1
     },
     {
-      "name": "ABC",
-      "price": "1200",
+      "name": "DIOR LIP GLOW",
+      "price": "1,390",
       "quantity": "3",
-      "description": "ABC",
+      "description": "Hydrating color reviver lip balm",
       "id": 2
-    },
-    {
-      "name": "",
-      "price": null,
-      "quantity": null,
-      "description": "",
-      "id": 3
     }
   ]
 }
