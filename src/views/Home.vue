@@ -182,7 +182,7 @@ header {
   padding: 24px;
 }
 body {
-  color: #e29578;
+  color: #DA744F;
 }
 
 input {
