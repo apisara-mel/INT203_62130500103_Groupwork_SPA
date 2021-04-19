@@ -2,7 +2,7 @@
   <navbar />
   <!-- <header class="flex justify-center">Stock Manager</header> -->
 
-  <body class="h-screen">
+  <body class="">
     <div class="contianer justify-center flex mt-20">
       <div
         class="stock-contianer justify-start max-w-lg rounded-md shadow-lg bg-red-100 px-8 py-10"

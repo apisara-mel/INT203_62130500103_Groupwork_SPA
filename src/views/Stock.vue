@@ -1,6 +1,6 @@
 <template>
   <navbar />
-  <div class="h-screen grid grid-cols-2">
+  <div class="grid grid-cols-2">
     <div class="mx-24 my-20 items-stretch">
       <div
         v-for="product in allProduct"
