@@ -1,68 +1,74 @@
 <template>
   <navbar />
-
-  <div class="h-screen">
-    <div v-for="product in allProduct" :key="product.id">
-      <p>
-        {{ product.name }}
-        <button @click="editProduct">Edit</button>
+  <div class="h-screen grid grid-cols-2">
+    <div>
+      <div
+        v-for="product in allProduct"
+        :key="product.id"
+        class="rounded-lg bg-white border-blue-400 border-2"
+      >
+        <p>
+          {{ product.name }} <br />
+          {{ product.price }} <br />
+          {{ product.quantity }} <br />
+          {{ product.description }} <br />
+        </p>
+        <button @click="editProduct(product)">Edit</button>
         <button @click="deleteProduct(product.id)">Delete</button>
-      </p>
-
-      <div v-if="isEdit">
-        <form @submit.prevent="editSubmit(product)">
-          <div class="mb-8">
-            <p>
-              Item Name :
-              <input
-                v-model="enteredName"
-                class="ml-2 w-80 placeholder-gray-500 placeholder-opacity-50 focus:outline-none rounded"
-                type="text"
-                placeholder="Plese enter your item name"
-              />
-            </p>
-          </div>
-
-          <div class="mb-8">
-            <p>
-              Price :
-              <input
-                v-model="price"
-                class="ml-2 w-80 placeholder-gray-500 placeholder-opacity-50 focus:outline-none rounded"
-                type="text"
-                placeholder="Item price"
-              />
-            </p>
-          </div>
-
-          <div class="mb-8">
-            <p>
-              Quantity :
-              <input
-                v-model="quantity"
-                class="ml-2 w-80 placeholder-gray-500 placeholder-opacity-50 focus:outline-none rounded"
-                type="text"
-                placeholder="Item quantities"
-              />
-            </p>
-          </div>
-
-          <div class="mb-8">
-            <p>
-              Description :
-              <input
-                v-model="description"
-                class="ml-2 w-80 placeholder-gray-500 placeholder-opacity-50 focus:outline-none rounded"
-                type="text"
-                placeholder="Description"
-              />
-            </p>
-          </div>
-          <button type="submit">
-            SUBMIT
-          </button>
-        </form>
       </div>
+    </div>
+
+    <div v-if="isEdit">
+      <form @submit.prevent="editSubmit(selectProduct)">
+        <div class="mb-8">
+          <p>
+            Item Name :
+            <input
+              v-model="enteredName"
+              class="ml-2 w-80 placeholder-gray-500 placeholder-opacity-50 focus:outline-none rounded"
+              type="text"
+              placeholder="Plese enter your item name"
+            />
+          </p>
+        </div>
+
+        <div class="mb-8">
+          <p>
+            Price :
+            <input
+              v-model="price"
+              class="ml-2 w-80 placeholder-gray-500 placeholder-opacity-50 focus:outline-none rounded"
+              type="text"
+              placeholder="Item price"
+            />
+          </p>
+        </div>
+
+        <div class="mb-8">
+          <p>
+            Quantity :
+            <input
+              v-model="quantity"
+              class="ml-2 w-80 placeholder-gray-500 placeholder-opacity-50 focus:outline-none rounded"
+              type="text"
+              placeholder="Item quantities"
+            />
+          </p>
+        </div>
+
+        <div class="mb-8">
+          <p>
+            Description :
+            <input
+              v-model="description"
+              class="ml-2 w-80 placeholder-gray-500 placeholder-opacity-50 focus:outline-none rounded"
+              type="text"
+              placeholder="Description"
+            />
+          </p>
+        </div>
+        <button type="submit">SUBMIT</button>
+      </form>
     </div>
   </div>
 </template>
@@ -81,6 +87,7 @@ export default {
       quantity: null,
       description: "",
       isEdit: false,
+      selectProduct: null,
     };
   },
 
@@ -108,8 +115,14 @@ export default {
       }
     },
 
-    editProduct() {
+    editProduct(product) {
       this.isEdit = true;
+      this.enteredName = product.name;
+      this.price = product.price;
+      this.quantity = product.quantity;
+      this.description = product.description;
+
+      this.selectProduct = product;
     },
     async editSubmit(editingData) {
       const res = await fetch(`${this.url}/${editingData.id}`, {
@@ -141,6 +154,7 @@ export default {
       this.quantity = null;
       this.description = "";
       this.isEdit = false;
+      this.selectProduct = null;
     },
   },
   async created() {

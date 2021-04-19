@@ -1,11 +1,18 @@
 {
   "allProduct": [
     {
-      "name": "sdsdd",
-      "price": "3",
+      "name": "NYX",
+      "price": "5000",
+      "quantity": "10",
+      "description": "Libstick Gels",
+      "id": 2
+    },
+    {
+      "name": "ABC",
+      "price": "1200",
       "quantity": "3",
-      "description": "ad",
-      "id": 1
+      "description": "ABC",
+      "id": 3
     }
   ]
 }

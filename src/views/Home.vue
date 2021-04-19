@@ -61,7 +61,6 @@
 
     <div class="flex justify-center">
         <button
-        v-on:click="submitForm"
         class="rounded-md py-2 px-5 my-8"
         style="background-color: #dd2c2f">
         <!-- <router-link to="/stock"> -->
