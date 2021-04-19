@@ -39,7 +39,8 @@
 
     <div
       v-if="isEdit"
-      class="mx-24 my-20 rounded-md border-2 bg-pink-200 flex justify-center"
+      class="mx-24 my-20 rounded-md border-2 flex justify-center items-center"
+      style="background-color: #ffddd2"
     >
       <div class="py-10">
         <form @submit.prevent="editSubmit(selectProduct)">
@@ -98,7 +99,6 @@
             SUBMIT
           </button> 
           </div>
-          
         </form>
       </div>
     </div>
@@ -203,5 +203,8 @@ button {
 }
 button:hover {
   background-color: #da744f;
+}
+p{
+  color: #006d77;
 }
 </style>

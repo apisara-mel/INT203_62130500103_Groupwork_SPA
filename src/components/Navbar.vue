@@ -8,8 +8,8 @@
 
       <div class="col-start-2 col-end-2 justify-self-center space-x-44">
         <router-link to="/">Home</router-link>
+        <router-link to="/about">AddStock</router-link>
         <router-link to="/stock">ItemsStock</router-link>
-        <router-link to="/about">About</router-link>
       </div>
     </div>
 </template>

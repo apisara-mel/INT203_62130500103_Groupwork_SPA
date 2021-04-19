@@ -5,13 +5,20 @@
       "price": "5000",
       "quantity": "10",
       "description": "Libstick Gels",
-      "id": 2
+      "id": 1
     },
     {
       "name": "ABC",
       "price": "1200",
       "quantity": "3",
       "description": "ABC",
+      "id": 2
+    },
+    {
+      "name": "",
+      "price": null,
+      "quantity": null,
+      "description": "",
       "id": 3
     }
   ]
